@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="占位符, 18379933714@139.com">
+  
+  
+  
+  <title>Markdown语法入门 | 占位符个人博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="标记语言,Markdown,入门,">
+  
+
+  <script>
+    console.log('\n%c Hexo-theme-bmw v4.0 ' + '%c 🎉 https://github.com/dongyuanxin/theme-bmw 🎉\n' + '\n%c View demo online ' + '%c 🔍 https://godbmw.com/ 🔍  \n' , 'color: #fadfa3; background: #030307; padding:3px 0;', '', 'color: #fadfa3; background: #030307; padding:3px 0;', '');
+  </script>
+
+  
+    <meta name="description" content="爱冒冒，学编程，写代码，品生活">
+  
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/icon/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+
+  <script src="/js/util.js"></script>
+<script src="/js/valine.min.js"></script>
+
+  
+
+  
+    <link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js" async></script>
+  
+
+  
+    <link href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
+  
+  
+  <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js" async></script>
+  
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.0/dist/av-min.js"></script>
+  
+
+</head>
+
+  <body>
+
+    
+
+    <div id="app">
+
+      <div class="header-wrap">
+  <header>
+    <div class="site-brand">
+      <div class="site-title">
+        <a href="/">PLACEHOLDER</a>
+      </div>
+    </div>
+    <nav class="site-navigation">
+      <ul class="nav-menu">
+      
+        <li class="nav-item" data-path="/">
+          
+            <a href="/" target="_self">
+              主页
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          
+            <a href="/archives/" target="_self">
+              归档
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          
+            <a href="/categories/" target="_self">
+              分类
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          
+            <a href="/tags/" target="_self">
+              标签
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/friends/">
+          
+            <a href="/friends/" target="_self">
+              友链
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          
+            <a href="/about/" target="_self">
+              关于
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="">
+          
+            <a href="javascript:void(0);" v-else="">抓到我</a>
+            <ul class="nav-menu--dropdown">
+              
+                <li>
+                  <a href="https://github.com/zjbshk" target="_blank">
+                    Github
+                  </a>
+                </li>
+              
+                <li>
+                  <a href="https://www.zhihu.com/people/zhan-jin-bing-49/activities" target="_blank">
+                    知乎
+                  </a>
+                </li>
+              
+                <li>
+                  <a href="https://www.jianshu.com/u/386d5e5dff90" target="_blank">
+                    简书
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+      
+      </ul>
+    </nav>
+    <i class="iconfont icon-menu"></i>
+  </header>
+</div>
+
+<script>
+  let links = document.querySelectorAll('.nav-item');
+  for(let link of links){
+    let childrenLink = link.querySelector('ul');
+    link.addEventListener('mouseenter', () => {
+      if(childrenLink) {
+        childrenLink.className = "nav-menu--dropdown active";
+      }
+    })
+    link.addEventListener('mouseleave', () => {
+      if(childrenLink) {
+        childrenLink.className = "nav-menu--dropdown";
+      }
+    })
+  }
+  let rootRealPath = getRealPath(window.location.pathname, true);
+  for(let link of links) {
+    let linkPath = link.getAttribute("data-path");
+    if(linkPath && getRealPath(linkPath, true) === rootRealPath) {
+      link.className = "nav-item hover";
+    }
+  }
+
+  let iconMenu = document.querySelector("i.iconfont.icon-menu"),
+    iconMenuClicked = false;
+  let navDOM = document.querySelector("nav.site-navigation");
+  iconMenu.addEventListener("click", () => {
+    iconMenuClicked 
+      ? navDOM.className = "site-navigation active"
+      : navDOM.className = "site-navigation";
+    iconMenuClicked = !iconMenuClicked;
+  })
+</script>
+
+      
+
+
+
+
+
+
+
+
+<div class="container post-index">
+
+  
+
+<div class="post">
+  <h1 class="article-title">
+    <span>Markdown语法入门</span>
+  </h1>
+  <div class="article-top-meta">
+    <span>
+      发布 : 
+      2019-02-04
+    </span>
+    
+      <span>
+        分类 : 
+          <a href="/categories/标记语言/">
+            标记语言
+          </a>
+      </span>
+    
+    
+      <span>
+        浏览 : <span class="article-timer" data-identity="Markdown语法入门"></span>
+      </span>
+    
+  </div>
+
+  
+    <div id="Markdown语法入门" style="margin: 4rem 2px"></div>
+<script async>
+  (function(){
+    let playerTimer = setInterval(function(){
+      if(!window.APlayer){
+        return
+      }
+
+      new APlayer({
+        container: document.getElementById('Markdown语法入门'),
+        theme: '#e96900',
+        listFolded: false,
+        audio: [{"name":"Where are you","artist":"AniFace","url":"//music.163.com/song/media/outer/url?id=453843751.mp3","cover":"//p1.music.126.net/AUfXMljLBgB3PBV731IzRg==/109951162857118370.jpg?param=130y130"},{"name":"END THEME","artist":"天門","url":"http://music.163.com/song/media/outer/url?id=528306.mp3","cover":"//p1.music.126.net/1sw_ptPeI_GNm58VBW1udQ==/2504687488135369.jpg?param=130y130"}]
+      });
+      
+      clearInterval(playerTimer)
+    }, 10);
+  })()
+</script>
+  
+
+  <div class="article-content">
+    <div class="markdown-body">
+      <p><img src="https://upload-images.jianshu.io/upload_images/7473008-4962c96ed733892d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="markdown图标"></p>
+<h3 id="Markdown是什么-1"><a href="#Markdown是什么-1" class="headerlink" title="Markdown是什么?"></a>Markdown是什么?</h3><pre><code>一种轻量级标记语言，主要用于文档写作
+标记语言还有HTML，XML等
+</code></pre><h3 id="Markdown的优点"><a href="#Markdown的优点" class="headerlink" title="Markdown的优点"></a>Markdown的优点</h3><pre><code>Markdown的语法简洁明了、容易上手，而且功能比纯文本更
+强。很多博客平台均支持Markdown，github的README.MD等类似 
+的说明文档也均采用Markdown编写
+</code></pre><h3 id="Markdown的使用指南"><a href="#Markdown的使用指南" class="headerlink" title="Markdown的使用指南"></a>Markdown的使用指南</h3><h4 id="1-标题"><a href="#1-标题" class="headerlink" title="1.标题"></a>1.标题</h4><pre><code># 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+</code></pre><p><strong>效果如下：</strong><br><img src="https://upload-images.jianshu.io/upload_images/7473008-c48aa7aec58a5c5c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400" alt="标题效果图"><br><strong>效果说明</strong>    </p>
+<pre><code>标题一共分为六级，&quot;#&quot;号的个数代表级数，标题文字与&quot;#&quot;至少一个空格(space或是tab都可以)
+具体格式为:# 空格 标题文字
+</code></pre><h4 id="2-文本样式"><a href="#2-文本样式" class="headerlink" title="2.文本样式"></a>2.文本样式</h4><h5 id="2-1链接"><a href="#2-1链接" class="headerlink" title="2.1链接"></a>2.1链接</h5><pre><code>这是一个[简书链接](https://www.jianshu.com/)
+这是一个简书链接(https://www.jianshu.com/)
+这是一个[简书链接](https://www.jianshu.com/ &quot;title我是简书哦&quot;)
+https://www.jpjbp.com/
+(https://www.jpjbp.com/)
+&lt;https://www.jianshu.com/&gt;
+</code></pre><p><strong>效果如下：</strong><br>这是一个<a href="https://www.jianshu.com/" target="_blank" rel="noopener">简书链接</a><br>这是一个简书链接(<a href="https://www.jianshu.com/" target="_blank" rel="noopener">https://www.jianshu.com/</a>)<br>这是一个<a href="https://www.jianshu.com/" title="title我是简书哦" target="_blank" rel="noopener">简书链接</a><br><a href="https://www.jianshu.com/" target="_blank" rel="noopener">https://www.jianshu.com/</a><br>(<a href="https://www.jpjbp.com/" target="_blank" rel="noopener">https://www.jpjbp.com/</a>)<br><a href="https://www.jianshu.com/" target="_blank" rel="noopener">https://www.jianshu.com/</a></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7473008-37e70474fe1c09e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="附上有title显示的效果图"><br><strong>效果说明</strong>  </p>
+<pre><code>链接格式:
+URL                         自生成链接
+&lt;URL&gt;                       自生成链接
+(URL)                       前面没有中括号会生成一个带括号的链接
+[文字](URL)                 不带标题，符号&quot;]&quot;和&quot;(&quot;之间不能有其他字符,空格都不行
+[文字](URL空格&quot;标题内容&quot;)    带标题，记得URL和标题内容之间加空格
+</code></pre><h5 id="2-2强调"><a href="#2-2强调" class="headerlink" title="2.2强调"></a>2.2强调</h5><pre><code>~~删除~~
+**加粗**
+__加粗__
+*斜体*
+_斜体_
+*__斜体加粗__*
+__*斜体加粗*__
+_**斜体加粗**_
+**_斜体加粗_**
+</code></pre><p><strong>效果如下：</strong></p>
+<p><del>删除</del><br><strong>加粗</strong><br><strong>加粗</strong><br><em>斜体</em><br>_斜体_<br><em><strong>斜体加粗</strong></em><br><strong><em>斜体加粗</em></strong><br><em><strong>斜体加粗</strong></em><br><strong><em>斜体加粗</em></strong><br><strong><em>斜体加粗</em></strong><br><strong><em>斜体加粗</em></strong><br><img src="https://upload-images.jianshu.io/upload_images/7473008-3272fe8675e8d72b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400" alt="强调效果展示"><br><strong>效果说明</strong>  </p>
+<pre><code>下划线&quot;_&quot;和星号&quot;*&quot;效果基本相同
+特别说明:带&quot;*&quot;星号的文本样式，在原版Markdown标准中不存在，但在其大部分衍生标准中被添加
+</code></pre><h5 id="2-3段落"><a href="#2-3段落" class="headerlink" title="2.3段落"></a>2.3段落</h5><pre><code>一个&apos;Markdown段落&apos;是由一个或多个连续的文本行组成，它的前后要有一个以上
+的空行。普通段落不该用空格或制表符来缩进。段落的前后要有&apos;空行&apos;。(所谓的空
+行是指没有文字内容，通过Enter键即可。若想在段内强制换行的方式是使用两个
+以上空格加上回车)
+</code></pre><p><strong>效果展示：</strong></p>
+<p>我是一个段落，就像word中的正文<br><img src="https://upload-images.jianshu.io/upload_images/7473008-d0d1f84d8af526e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="段落"></p>
+<h5 id="2-4区块引用"><a href="#2-4区块引用" class="headerlink" title="2.4区块引用"></a>2.4区块引用</h5><pre><code>在需引用的行使用符号 &quot;&gt;&quot; ,也可使用多个嵌套引用，如：
+&gt;一切都是命运石门的选择  
+
+&gt;一级引用嵌套
+&gt;&gt;二级引用嵌套
+&gt;&gt;&gt;&gt;四级引用嵌套
+</code></pre><blockquote>
+<p>一切都是命运石门的选择</p>
+</blockquote>
+<blockquote>
+<p>一级引用嵌套</p>
+<blockquote>
+<p>二级引用嵌套</p>
+<blockquote>
+<blockquote>
+<p>四级引用嵌套</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h5 id="2-5代码区块"><a href="#2-5代码区块" class="headerlink" title="2.5代码区块"></a>2.5代码区块</h5><pre><code>代码区块的建立是在每行加上4个空格或者二个制表符（如同写代码一样）。
+不同的编写工具在空格和制表符的数量上会有差异，简书Markdown是符合的
+可以用下面的写法代码块的开头和结尾均用三个&quot;`&quot;符号。(注意:&quot;`&quot;不是单引号，
+是Tab键上面的那个,称为反引号(backquote))  
+
+行内短代码`System.out.println(&quot;我是瓜瓜&quot;)`
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">  Scanner scanner = new Scanner(System.in);//创建一个Scanner的实例</span><br><span class="line">  String s = scanner.nextLine();  </span><br><span class="line">  System.out.println(&quot;您输入的是:&quot;+s)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;school&gt;</span><br><span class="line">  &lt;teacher&gt;瓜瓜&lt;/teacher&gt;</span><br><span class="line">  &lt;student&gt;冒冒&lt;/student&gt;</span><br><span class="line">&lt;/school&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;这是标题&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;我是身体&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</code></pre><p><strong>效果如下：</strong></p>
+<p>行内短代码<code>System.out.println(&quot;我是瓜瓜&quot;)</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">  Scanner scanner = new Scanner(System.in);//创建一个Scanner的实例</span><br><span class="line">  String s = scanner.nextLine();  </span><br><span class="line">  System.out.println(&quot;您输入的是:&quot;+s)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--我是一个注释--&gt;</span><br><span class="line"> &lt;school&gt;</span><br><span class="line">   &lt;teacher&gt;我&lt;/teacher&gt;</span><br><span class="line">   &lt;student&gt;你&lt;/student&gt;</span><br><span class="line"> &lt;/school&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;这是标题&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;我是身体&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="2-6列表-（无序，有序）"><a href="#2-6列表-（无序，有序）" class="headerlink" title="2.6列表 （无序，有序）"></a>2.6列表 （无序，有序）</h5><h6 id="无序"><a href="#无序" class="headerlink" title="无序"></a>无序</h6><pre><code>通过&quot;.&quot; 、&quot;+&quot;、&quot;*&quot;、或&quot;-&quot; 标记&apos;无序列表&apos;，如：
+-  第一个
+-  第二个
++  第二个
+*  第三个
+*  第四个
+</code></pre><p> <strong>效果如下：</strong></p>
+<ul>
+<li>第一个</li>
+<li>第二个</li>
+</ul>
+<ul>
+<li>第二个</li>
+</ul>
+<ul>
+<li>第三个</li>
+<li>第四个<br><img src="https://upload-images.jianshu.io/upload_images/7473008-5360da3c16425c37.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="无序列表.png"></li>
+</ul>
+<p><strong>效果说明</strong></p>
+<pre><code>无序列表中&quot;.&quot; 、&quot;+&quot;、&quot;*&quot;、或&quot;-&quot; 标记都可以用，嵌套用的话会隔很大的空间
+注意:标记和文字之间至少有一个空格，简书似乎不支持&quot;.&quot;符号，所以这里没有
+演示，我用其他的工具是可以的
+</code></pre><h6 id="有序"><a href="#有序" class="headerlink" title="有序"></a>有序</h6><pre><code>1. 第一个
+1. 第一个
+1. 第一个
+1. 第一个  
+
+
+1. 第一个
+ 第一个的内容
+1. 第二个
++ 无序表格
+4. 第三个
+2. 第四个
+0. 第五个
+</code></pre><p> <strong>效果如下：</strong></p>
+<ol>
+<li>第一个</li>
+<li>第一个</li>
+<li>第一个</li>
+<li>第一个  </li>
+</ol>
+<ol>
+<li>第一个<br>第一个的内容</li>
+<li>第二个</li>
+</ol>
+<ul>
+<li>无序表格</li>
+</ul>
+<ol start="4">
+<li>第三个</li>
+<li>第四个</li>
+<li>第五个</li>
+</ol>
+<p><strong>效果说明</strong></p>
+<pre><code>有序列表通过数字加&quot;.&quot;进行自动的标号，生成后的序号从1开始，可以插入无序列表
+注意:&quot;.&quot;后面至少一个空格
+</code></pre><h5 id="2-7分割线"><a href="#2-7分割线" class="headerlink" title="2.7分割线"></a>2.7分割线</h5><pre><code>***
+---
+_____ 
+</code></pre><p><strong>效果如下：</strong></p>
+<hr>
+<hr>
+<hr>
+<h4 id="3-图片"><a href="#3-图片" class="headerlink" title="3.图片"></a>3.图片</h4><pre><code>添加图片形式和链接类似，只需要在链接的格式上最前方加一个&quot;!&quot;即可
+![Markdown](https://upload-images.jianshu.io/upload_images/7473008-4962c96ed733892d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+</code></pre><p><strong>效果如下：</strong><br><img src="https://upload-images.jianshu.io/upload_images/7473008-4962c96ed733892d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Markdown"><br><strong>效果说明</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![Message](URL)                  不带title的</span><br><span class="line">![Message](URL &quot;title&quot;)          带title的，URL与&quot;title&quot;之间至少一个空格</span><br></pre></td></tr></table></figure></p>
+<h4 id="4-反斜杠”-“"><a href="#4-反斜杠”-“" class="headerlink" title="4.反斜杠”\“"></a>4.反斜杠”\“</h4><pre><code>如果您使用&quot;*&quot;不是为了让它具有一个特殊功能，比如标记无序列表或是斜体粗体
+等，而是想让它直接输出为一个星号字符就可以这样: 
+\*\*it\*\*
+**it**
+\+ 1
+* 1
+\* 1
+</code></pre><p><strong>效果如下：</strong><br>**it**<br><strong>it</strong><br>+ 1</p>
+<ul>
+<li>1<br>* 1</li>
+</ul>
+<p><strong>效果说明</strong></p>
+<pre><code>想让特殊功能字符原样输出就可以用反斜杠&quot;\&quot;转义（&quot;\&quot;也称为转义符）
+</code></pre><h4 id="5-表格"><a href="#5-表格" class="headerlink" title="5.表格"></a>5.表格</h4><pre><code>姓名|性别
+-|-
+瓜瓜|男
+冒冒|女
+
+姓名|城市
+-:|-:
+瓜瓜|江西
+冒冒|江西
+</code></pre><p><strong>效果如下：</strong><br>姓名|性别<br>-|-<br>瓜瓜|男<br>冒冒|女</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">姓名</th>
+<th style="text-align:right">城市</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">瓜瓜</td>
+<td style="text-align:right">江西</td>
+</tr>
+<tr>
+<td style="text-align:right">冒冒</td>
+<td style="text-align:right">江西</td>
+</tr>
+</tbody>
+</table>
+<p><strong>效果说明</strong></p>
+<pre><code>表格单元内容默认是左对齐的，可以通过&quot;-|-&quot;加冒号改变，比如:
+&quot;-:|-:&quot;        两列都是右对齐
+&quot;-|-:&quot;         第一个列左对齐,第二个列是右对齐
+&quot;-|:-:&quot;        第一个列左对齐,第二个列是居中
+</code></pre><p><strong>详细语法请参考</strong><br><a href="https://www.appinn.com/markdown/" target="_blank" rel="noopener">Markdown 语法说明</a>  </p>
+<p>感谢您的阅读，如有写的不妥之处，还望您批评指正，谢谢</p>
+    </div>
+  </div>
+  
+    <div class="copy-right">
+      <div class="markdown-body">
+        <blockquote>
+        
+        
+          本文作者 : 占位符 <br>
+        
+        原文链接 : <a href="">http://yoursite.com/2019/02/04/Markdown语法入门/</a><br>
+        版权声明 : 本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+        </blockquote>
+      </div>
+    </div>
+  
+  
+  
+    <div class="social-share" style="margin-top: -2rem" data-wechat-qrcode-title="<p>微信扫一扫</p>" data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>" data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter">
+  <span style="color: #6b7487; font-size: 1.4rem;">分享到: </span>
+</div>
+<script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js" async></script>
+  
+
+  
+    <div id="reward">
+  
+    <p id="reward-meta">知识 & 情怀 | 二者兼得</p>
+  
+  <button id="reward-btn">
+    
+    <span>投食</span>
+  </button>
+  <div id="reward-qrcode">
+    
+      <div class="reward-qrcode--container">
+        <img class="qrcode-img" src="/images/wechat.png" alt="微信扫一扫, 向我投食">
+        <p class="qrcode-meta">微信扫一扫, 向我投食</p>
+      </div>
+    
+      <div class="reward-qrcode--container">
+        <img class="qrcode-img" src="/images/alipay.png" alt="支付宝扫一扫, 向我投食">
+        <p class="qrcode-meta">支付宝扫一扫, 向我投食</p>
+      </div>
+    
+  </div>
+
+</div>
+
+<script>
+  (() => {
+    let button = document.querySelector('#reward-btn'),
+      qrcode = document.querySelector('#reward-qrcode'),
+      display = false;
+    
+    button.addEventListener('click', () => {
+      qrcode.style.display = display ? 'none' : 'block'
+      display = !display
+    }, false)
+  })()
+</script>
+  
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+      <span>
+        
+          <i class="iconfont icon-06tags"></i>标签: 
+          
+          <span class="span--tag">
+            <a href="/tags/Markdown/">
+              #Markdown
+            </a>
+          </span>
+          
+          <span class="span--tag">
+            <a href="/tags/入门/">
+              #入门
+            </a>
+          </span>
+          
+        
+      </span>
+    </div>
+    <div class="article-meta pull-right">
+    </div>
+  </div>
+</div>
+
+
+  <aside id="sidebar">
+    <p id="sidebar-header"></p>
+    <ol id="sidebar-toc"></ol>
+  </aside>
+  <script async>setTimeout(generateToc, 10);</script>
+
+
+  <nav class="post-navigation">
+    
+    
+  </nav>
+
+  
+    <a href="#comment" class="comment-anchor"></a>
+<div class="comment-title"><i class="iconfont icon-footprint"></i> 留下足迹 <i class="iconfont icon-footprint"></i></div>
+<div id="vcomments"></div>
+
+<script defer>
+  if( true ) {
+    let path = getRealPath()
+    new Valine({
+      el: "#vcomments",
+      appId: "58sVdVvYaDvhFpLCEXyUNGov-gzGzoHsz",
+      appKey: "v9j9EI1HxxnWIKtqUCCY7jgL",
+      notify: false,
+      verify: false,
+      avatar: "robohash",
+      placeholder: "正确填写邮箱, 才能及时收到回复哦♪(^∇^*)",
+      path
+    });
+  }
+</script>
+   
+
+  
+    <script defer>
+const valineAPI = (() => {
+  try {
+    AV.init("58sVdVvYaDvhFpLCEXyUNGov-gzGzoHsz", "v9j9EI1HxxnWIKtqUCCY7jgL");
+  } catch(error) {}
+  const isExist = (identity) => {
+    identity = identity || getRealPath();
+    let query = new AV.Query('Timer');
+    return new Promise((resolve, reject) => {
+      query.equalTo("identity", identity);
+      query.find().then(results => {
+        resolve(results.length > 0);
+      }, error => reject(error));
+    })
+  }
+
+  const _get = (identity) => {
+    let query = null;
+    if(identity && identity instanceof Array){
+      let querys = [];
+      for(let i = 0; i < identity.length; ++i) {
+        querys[i] = new AV.Query('Timer');
+        querys[i].equalTo('identity', identity[i]);
+      }
+      query = AV.Query.or.apply(null ,querys);
+    } else {
+      identity = identity || getRealPath();
+      query = new AV.Query("Timer");
+      query.equalTo("identity", identity);
+    }
+
+    return new Promise((resolve, reject) => {
+      query.find()
+      .then(results => resolve(results))
+      .catch(error => reject(error))
+    })
+  }
+
+  const create = (identity) => {
+    identity = identity || getRealPath();
+    return new Promise((resolve, reject) => {
+      let Todo = AV.Object.extend('Timer');
+      let todo = new Todo();
+      todo.set("times", 1);
+      todo.set("identity", identity);
+      todo.save().then(res => resolve(true), error => reject(error));
+    })
+  }
+
+  const update = (identity) => {
+    identity = identity || getRealPath();
+    return new Promise((resolve, reject) => {
+      let query = new AV.Query('Timer');
+      query.equalTo("identity", identity);
+      query.find().then(todos => {
+        todos.forEach(todo => {
+          todo.set("times", todo.attributes.times + 1);
+        });
+        return AV.Object.saveAll(todos);
+      }).then(todos => resolve(true), error => reject(error));
+    })
+  }
+
+  return {
+    isExist,
+    _get,
+    update,
+    create
+  }
+})()
+
+const calcAndWriteTimes = () => {
+  let isPost = true;
+
+  let timerAllDOM = document.querySelectorAll(".article-timer");
+
+  if(isPost) {
+    let identity = timerAllDOM[0].getAttribute("data-identity");
+    valineAPI.isExist(identity)
+    .then(exist => {
+      if(exist) {
+        return valineAPI.update(identity);
+      }
+      return new Promise(resolve => resolve(true));
+    })
+    .then( succuess => valineAPI._get(identity))
+    .then( result => timerAllDOM[0].innerText = result[0].attributes.times)
+    .catch(error => console.log(error.message))
+    return ;
+  }
+
+  let timerDOMCache = {};
+
+  for(let timerDOM of timerAllDOM) {
+    let identity = timerDOM.getAttribute("data-identity");
+    if(timerDOMCache.hasOwnProperty(identity)){
+      timerDOMCache[identity].dom.push(timerDOM);
+    }else{
+      timerDOMCache[identity] = {
+        dom: [timerDOM],
+        times: undefined
+      };
+    }
+  }
+
+  let identities = Object.keys(timerDOMCache);
+  valineAPI._get(identities).then(results => {
+    for(let result of results) {
+      let {identity, times} = result.attributes;
+      timerDOMCache[identity].times = times;
+      timerDOMCache[identity].dom.map(item => item.innerText = times);
+    }
+    for(let identity of identities) {
+      if(timerDOMCache[identity].times){
+        continue;
+      }
+      timerDOMCache[identity].dom.map(item => item.innerText = 1);
+      valineAPI.create(identity);
+    }
+  }).catch(error => console.log(error.message))
+}
+
+if(true){
+  calcAndWriteTimes();
+}
+</script>
+   
+
+</div>
+
+
+      <footer>
+  <p class="site-info">
+    博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>
+    <br>
+    Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
+    <br>
+    
+  </p>
+</footer>
+
+
+
+<script>
+const timeToNowDOM = document.querySelector("#time-to-now");
+const startTimestamp = new Date(2019, 1, 4).getTime();
+
+const updateTimeStr = () => {
+  let offset = parseInt(
+      (new Date().getTime() - startTimestamp) / 1000,
+      10
+    ),
+    day = Math.floor(offset / 86400),
+    hour = Math.floor((offset % 86400) / 3600),
+    minute = Math.floor(((offset % 86400) % 3600) / 60),
+    second = Math.floor(((offset % 86400) % 3600) % 60);
+  timeToNowDOM.innerHTML =
+    day + "天" + hour + "小时" + minute + "分钟" + second + "秒";
+  setTimeout(updateTimeStr, 500);
+}
+
+setTimeout(updateTimeStr, 500);
+</script>
+
+
+      <div class="back-to-top hidden">
+  <span>
+    <i class="iconfont icon-60"></i><span></span>%
+  </span>
+</div>
+
+<script>
+const updateIconToTop = percent => {
+  let dom = document.querySelector(".back-to-top span span");
+  dom.innerText = percent;
+  if(percent < 1) {
+    document.querySelector(".back-to-top").className = "back-to-top hidden";
+  } else {
+    document.querySelector(".back-to-top").className = "back-to-top";
+  }
+}
+
+const handleScoll = () => {
+  let isRunning = false;
+  return () => {
+    if (isRunning) return;
+    isRunning = true;
+    window.requestAnimationFrame(timestamp => {
+      let scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop,
+        scrollHeight =
+          document.documentElement.scrollHeight ||
+          document.body.scrollHeight,
+        clientHeight =
+          document.documentElement.clientHeight ||
+          document.body.clientHeight;
+      isRunning = false;
+      if (scrollTop <= 1) {
+        updateIconToTop(0);
+        return;
+      }
+      if (scrollTop + clientHeight >= scrollHeight) {
+        updateIconToTop(100);
+      } else {
+        updateIconToTop(parseInt(
+          100 * scrollTop / (scrollHeight - clientHeight),
+          10
+        ));
+      }
+    });
+  };
+}
+
+const backToTop = () => {
+  let scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop,
+    delay = 10,
+    time = 200;
+  if (scrollTop <= 20) {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    return;
+  }
+  let step = Math.ceil(scrollTop * delay / time);
+  let timer = setInterval(() => {
+    scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop - step <= 0) {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      clearInterval(timer);
+    } else {
+      document.documentElement.scrollTop = scrollTop - step;
+      document.body.scrollTop = scrollTop - step;
+    }
+  }, delay);
+}
+
+document.addEventListener("scroll", handleScoll(), false);
+
+document.querySelector(".back-to-top").addEventListener("click", backToTop, false);
+
+</script>
+
+    </div>
+
+    
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+<script>
+  (() => {
+    const mathjaxConfig = {
+      showProcessingMessages: false, //关闭js加载过程信息
+      messageStyle: "none", //不显示信息
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+      }
+    }
+
+    let mathjaxInterval = setInterval(() => {
+      if(!window.MathJax){
+        return;
+      }
+      window.MathJax.Hub.Config(mathjaxConfig)
+      window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('app')])
+
+      clearInterval(mathjaxInterval)
+    }, 10)    
+  })()
+</script>
+    
+
+    <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script>
+<script async>
+  let fancyTimer = setInterval(function(){
+    if(!window.$){
+      return;
+    }
+    $(document).ready(function() {
+      $(".post img").each(function () {
+        if($(this).parent().get(0).tagName.toLowerCase() === "a") {
+          return;
+        }
+        // $(this).attr("data-fancybox", "gallery"); // if you add 'data-fancybox', img will display after showed
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "gallery");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      });
+      
+      clearInterval(fancyTimer);
+    });
+  }, 10);
+</script>
+
+    
+  </body>
+
+</html>
