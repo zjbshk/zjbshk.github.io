@@ -1,0 +1,104 @@
+[
+    {
+        "name": "搜盘",
+        "items": [
+            {
+                "name": "大力盘",
+                "favicon": "https://www.dalipan.com/favicon.ico",
+                "url": "https://www.dalipan.com/",
+                "createSearchUrl": "url + 'search?keyword=' + word"
+            },
+            {
+                "name": "56网盘搜索",
+                "favicon": "https://www.56wangpan.com/favicon.ico",
+                "url": "https://www.56wangpan.com/",
+                "createSearchUrl": "url + 'search/kw' + word"
+            },
+            {
+                "name": "茶杯狐 Cupfox",
+                "favicon": "https://i.loli.net/2018/08/04/5b65b28a65aae.png",
+                "url": "https://www.cupfox.com/",
+                "createSearchUrl": "url + 'search?key=' + word"
+            },
+            {
+                "name": "小白盘",
+                "favicon": "https://www.xiaobaipan.com/static/assets/ico/favicon.png",
+                "url": "https://www.xiaobaipan.com/",
+                "createSearchUrl": "url + 'list-' + word + '.html'"
+            },
+            {
+                "name": "来搜一下",
+                "favicon": "https://www.laisoyixia.com/media/image/logo/favicon.ico",
+                "url": "https://www.laisoyixia.com/",
+                "createSearchUrl": "url + 's/search?q=' + word"
+            }
+        ]
+    },
+    {
+        "name": "音乐",
+        "items": [
+            {
+                "name": "网易云音乐",
+                "favicon": "https://s1.music.126.net/style/favicon.ico",
+                "url": "https://music.163.com/",
+                "desc": "网易云音乐是一款专注于发现与分享的音乐产品，依托专业音乐人、DJ、好友推荐及社交功能，为用户打造全新的音乐生活。",
+                "createSearchUrl": "url + '#/search/m/?s=' + word + '&type=1'"
+            },
+            {
+                "name": "QQ音乐",
+                "favicon": "https://y.qq.com/favicon.ico",
+                "url": "https://y.qq.com/",
+                "createSearchUrl": "url + 'portal/search.html#w=' + word"
+            }
+        ]
+    },
+    {
+        "name": "影视",
+        "items": [
+            {
+                "name": "TVB云播",
+                "favicon": "https://www.hktvyb.com/template/mytheme/statics/image/20200308/58fb0fd78.ico",
+                "url": "https://www.hktvyb.com/",
+            "evalJs":"document.querySelector('#note').previousElementSibling.remove();document.querySelector('#note').remove();",
+                "createSearchUrl": "url + 'vod/search.html?wd=' + word + '&submit='",
+                "desc": "TVB云播提供最新最快的TVB电视剧在线播放和下载"
+            },
+            {
+                "name": "新时空动漫",
+                "favicon": "https://www.xskdm.com/statics/img/favicon.ico",
+                "url": "http://www.xskdm.com/",
+                "createSearchUrl": "url + 'vodsearch/-------------.html?wd=' + word + '&submit='"
+            },
+            {
+                "name": "布米米动漫",
+                "favicon": "http://img.fsmkbl.cn/favicon.ico",
+                "url": "http://www.bumimi66.com/",
+                "createSearchUrl": "url + 'search/' + word"
+            },
+            {
+                "name": "哔哩哔哩 · bili",
+                "favicon": "https://www.bilibili.com/favicon.ico",
+                "url": "https://www.bilibili.com/",
+                "createSearchUrl": "url + 'all?keyword=' + word"
+            }
+        ]
+    },
+    {
+        "name": "书籍",
+        "items": [
+            {
+                "name": "鸠摩搜索",
+                "favicon": "https://www.jiumodiary.com/images/favicon.png",
+                "url": "https://www.jiumodiary.com/",
+                "createSearchUrl": "url",
+                "createSearchUrlJs": "document.querySelector('#SearchWord').value = ${word}; document.querySelector('#SearchButton').click();"
+            },
+            {
+                "name": "书问搜索",
+                "favicon": "http://www.bookask.com/pc/$css$/assets/i/favicon.ico",
+                "url": "http://www.bookask.com/",
+                "createSearchUrl": "url + '/s/kw_' + word + '/t_0/pn_1.html'"
+            }
+        ]
+    }
+]
